@@ -10,10 +10,6 @@ const puerto = 8080;
 //  Crear servidor HTTP manual
 const server = http.createServer(app);
 
-// Integrar Socket.IO
-const { Server } = require('socket.io');
-const io = new Server(server);
-
 // ==============================
 // CONEXIÓN A MONGODB
 // ==============================
@@ -44,25 +40,6 @@ const UsuarioSchema = new mongoose.Schema({
     color_code: String
 });
 const Usuario = mongoose.model('Usuarios', UsuarioSchema);
-
-// ==============================
-// SOCKET.IO - CHAT
-// ==============================
-io.on('connection', (socket) => {
-    console.log('Usuario conectado:', socket.id);
-
-    // Escuchar mensajes del cliente
-    socket.on('mensaje', (data) => {
-        console.log('Mensaje recibido:', data);
-
-        // Enviar a TODOS los usuarios conectados
-        io.emit('mensaje', data);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('Usuario desconectado:', socket.id);
-    });
-});
 
 // ==============================
 // RUTA DE REGISTRO
