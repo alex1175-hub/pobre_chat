@@ -1,34 +1,76 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mi perfil</title>
+    <title>Mi Perfil - Modo Oscuro</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <di>
-        <img src="IMG/logo.png" alt="logo">
-        <a href="chat.html">
-            <button id="chat">ver chat</button>
-        </a>
-        <button id="logout">cerrar sesion</button>
-    </di>
-    <form action="/editar" method="POST"> 
-        <input type="hidden" name="user_id">
-        <label>modififar su nombre de usuario</label>
-        <br>
-        <input type="text" name="user_name" required>
-        <br><br>
-        <label>cambiar contraseña <br> (si no desea cambiar la contraseña deje en blanco este espacio)</label>
-        <br>
-        <input type="password" name="user_pass">
-        <br><br>
-        <label>Elige un color para su nombre:</label>
-        <br>
-        <input type="color" name="color">
-        <br><br>
-        <button type="submit">guardar cambios</button> 
-    </form>
+<body class="bg-dark text-light">
+
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-7">
+                
+                <!-- Tarjeta Principal de Perfil -->
+                <div class="card shadow-lg border-secondary bg-dark">
+                    
+                    <!-- Encabezado con Logo y Navegación -->
+                    <div class="card-header bg-dark py-4 d-flex justify-content-between align-items-center border-secondary">
+                        <img src="IMG/logo.png" alt="logo" class="img-fluid" style="height: 160px; width: auto; filter: brightness(1.1);">
+                        <div class="btn-group">
+                            <a href="chat.html" class="btn btn-outline-info rounded-pill me-2">
+                                Ver chat
+                            </a>
+                            <button id="logout" class="btn btn-outline-danger rounded-pill">
+                                Cerrar sesión
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cuerpo: Formulario de Edición -->
+                    <div class="card-body p-4">
+                        <h3 class="mb-4 text-info">Configuración de Perfil</h3>
+                        
+                        <form action="/editar" method="POST"> 
+                            <input type="hidden" name="user_id">
+                            
+                            <!-- Nombre de Usuario -->
+                            <div class="mb-3">
+                                <label class="form-label text-secondary">Modificar nombre de usuario</label>
+                                <input type="text" name="user_name" class="form-control bg-dark border-secondary text-light" required>
+                            </div>
+
+                            <!-- Contraseña -->
+                            <div class="mb-3">
+                                <label class="form-label text-secondary">Cambiar contraseña</label>
+                                <p class="small text-muted mb-2">(Si no desea cambiarla, deje este espacio en blanco)</p>
+                                <input type="password" name="user_pass" class="form-control bg-dark border-secondary text-light">
+                            </div>
+
+                            <!-- Selector de Color -->
+                            <div class="mb-4">
+                                <label class="form-label text-secondary d-block">Elige un color para tu nombre:</label>
+                                <input type="color" name="color" class="form-control form-control-color bg-dark border-secondary w-100" style="height: 50px;">
+                            </div>
+
+                            <!-- Botón Guardar -->
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-info shadow-sm fw-bold">Guardar cambios</button> 
+                            </div>
+                        </form>
+                    </div>
+
+                </div> <!-- Fin de la tarjeta -->
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JS/sanitizar.js"></script>
     <script src="JS/cargar.js"></script>
     <script src="JS/modificar.js"></script>
     <script src="JS/logout.js"></script>
